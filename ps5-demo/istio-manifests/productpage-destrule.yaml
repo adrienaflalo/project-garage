@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: productcatalogservice-destination
+  namespace: hipster-shop
+spec:
+  host: productcatalogservice
+  subsets:
+  - name: classic-user
+    labels:
+      version: classic
+  - name: ps5-user
+    labels:
+      version: ps5

@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: productcatalogservice
+spec:
+  hosts:
+  - productcatalogservice
+  http:
+  - match:
+    - uri:
+        regex: "/hipstershop.ProductCatalogService/GetProduct"
+    route:
+    - destination:
+        host: productcatalogservice
+        subset: ps5-user
+  - route:
+    - destination:
+        host: productcatalogservice
+        subset: classic-user
+      weight: 100
+    - destination:
+        host: productcatalogservice
+        subset: ps5-user
+      weight: 0

@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend-ingress
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - frontend-gateway
+  http:
+  # - match:
+  #   - uri:
+  #       prefix: "/product/PS5PS5PS5Z"
+  #   route:
+  #   - destination:
+  #       host: productcatalogservice
+  #       subset: ps5-user
+  - route:
+    - destination:
+        host: frontend
+        port:
+          number: 80
